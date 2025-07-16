@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -70,36 +71,37 @@ const About = () => {
       icon: GraduationCap,
       title: 'Medical Education',
       items: [
-        'MD, Harvard Medical School',
-        'Neurosurgery Residency, Johns Hopkins',
-        'Fellowship in Pediatric Neurosurgery, Boston Children\'s Hospital'
+        'MBBS - Medical College',
+        'MCh Neurosurgery - NIMHANS, Bangalore',
+        'Fellowship in Advanced Spine Surgery'
       ]
     },
     {
       icon: Award,
-      title: 'Board Certifications',
+      title: 'Specializations',
       items: [
-        'American Board of Neurological Surgery',
-        'American Board of Pediatric Neurological Surgery',
-        'International Association of Pediatric Neurosurgery'
+        'Neurotrauma & Emergency Care',
+        'Complex Spine Surgery',
+        'Brain Tumor Surgery',
+        'Minimally Invasive Procedures'
       ]
     },
     {
       icon: Briefcase,
-      title: 'Professional Experience',
+      title: 'Current Practice',
       items: [
-        'Chief of Neurosurgery - Metropolitan Medical Center',
-        'Professor of Neurosurgery - State University',
-        'Director of Pediatric Neurosurgery Program'
+        'Pinnacle Brain and Spine Center',
+        'Unity Hospital - Consultant',
+        'SIDS Hospital - Visiting Consultant'
       ]
     }
   ];
 
   const achievements = [
-    { number: '15+', label: 'Years Experience', icon: Award },
-    { number: '5000+', label: 'Successful Surgeries', icon: Users },
-    { number: '50+', label: 'Research Publications', icon: GraduationCap },
-    { number: '24/7', label: 'Emergency Availability', icon: Briefcase }
+    { number: '10+', label: 'Years Experience', icon: Award },
+    { number: '3000+', label: 'Successful Surgeries', icon: Users },
+    { number: 'NIMHANS', label: 'Alumni', icon: GraduationCap },
+    { number: '4', label: 'Hospital Locations', icon: Briefcase }
   ];
 
   return (
@@ -107,11 +109,11 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="about-title text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Meet Your <span className="bg-gradient-primary bg-clip-text text-transparent">Neurosurgeon</span>
+            Meet <span className="bg-gradient-primary bg-clip-text text-transparent">Dr. Nisarg Parmar</span>
           </h2>
           <p className="about-title text-xl text-muted-foreground max-w-3xl mx-auto">
-            Dr. Sarah Mitchell brings over 15 years of specialized experience in neurosurgery, 
-            combining advanced medical expertise with compassionate patient care.
+            A distinguished Neuro and Spine Surgeon with advanced training from NIMHANS, 
+            combining cutting-edge medical expertise with compassionate patient care.
           </p>
         </div>
 
@@ -119,30 +121,29 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           <div className="about-content">
             <div className="bg-gradient-card rounded-2xl p-8 shadow-medium">
-              <h3 className="text-2xl font-bold text-foreground mb-6">Professional Background</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">My Clinical Expertise</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Dr. Mitchell is a board-certified neurosurgeon specializing in complex brain and spinal procedures. 
-                  She has dedicated her career to advancing neurosurgical techniques and improving patient outcomes 
-                  through innovative approaches and cutting-edge technology.
+                  With advanced training from NIMHANS and years of surgical experience, I provide comprehensive 
+                  care for complex neurological conditions using the latest evidence-based techniques.
                 </p>
                 <p>
-                  With extensive training from top medical institutions and years of hands-on experience, 
-                  Dr. Mitchell has successfully treated thousands of patients with various neurological conditions, 
-                  earning recognition as a leader in her field.
+                  As an alumnus of India's premier neurosurgical institution, I have dedicated my career to 
+                  advancing neurosurgical techniques and improving patient outcomes through innovative approaches 
+                  and state-of-the-art technology.
                 </p>
                 <p>
-                  Her commitment to excellence extends beyond the operating room through active participation in 
-                  medical research, education, and community outreach programs focused on neurological health awareness.
+                  My practice spans across multiple renowned hospitals in Surat, ensuring accessible, 
+                  high-quality neurological care for patients throughout the region.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-2 mt-6">
                 <Badge variant="secondary" className="bg-primary-light text-primary-dark">Brain Surgery</Badge>
                 <Badge variant="secondary" className="bg-primary-light text-primary-dark">Spinal Surgery</Badge>
-                <Badge variant="secondary" className="bg-primary-light text-primary-dark">Pediatric Care</Badge>
+                <Badge variant="secondary" className="bg-primary-light text-primary-dark">Neurotrauma</Badge>
+                <Badge variant="secondary" className="bg-primary-light text-primary-dark">NIMHANS Alumni</Badge>
                 <Badge variant="secondary" className="bg-primary-light text-primary-dark">Minimally Invasive</Badge>
-                <Badge variant="secondary" className="bg-primary-light text-primary-dark">Research</Badge>
               </div>
             </div>
           </div>

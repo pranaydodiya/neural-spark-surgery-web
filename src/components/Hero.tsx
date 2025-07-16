@@ -1,6 +1,7 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Award, Users, Clock } from 'lucide-react';
+import { ArrowRight, Award, Users, Clock, Stethoscope, Brain, Heart } from 'lucide-react';
 import { gsap } from 'gsap';
 import heroImage from '@/assets/hero-medical.jpg';
 
@@ -9,11 +10,22 @@ const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const doctorIconRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Create timeline for coordinated animations
       const tl = gsap.timeline({ delay: 0.5 });
+
+      // Doctor icon animation (floating stethoscope)
+      gsap.to(doctorIconRef.current, {
+        y: -10,
+        rotation: 5,
+        duration: 2,
+        ease: "power2.inOut",
+        yoyo: true,
+        repeat: -1
+      });
 
       // Hero content animations
       tl.fromTo(titleRef.current,
@@ -54,14 +66,26 @@ const Hero = () => {
         repeat: -1
       });
 
+      // Medical icons floating animation
+      gsap.to('.floating-icon', {
+        y: -15,
+        x: 5,
+        rotation: 10,
+        duration: 3,
+        ease: "power2.inOut",
+        yoyo: true,
+        repeat: -1,
+        stagger: 0.5
+      });
+
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   const stats = [
-    { icon: Award, label: '15+ Years', description: 'Experience' },
-    { icon: Users, label: '5000+', description: 'Patients Treated' },
+    { icon: Award, label: '10+ Years', description: 'NIMHANS Alumni' },
+    { icon: Users, label: '3000+', description: 'Patients Treated' },
     { icon: Clock, label: '24/7', description: 'Emergency Care' }
   ];
 
@@ -72,26 +96,49 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-accent/20 transform rotate-12 scale-150"></div>
       </div>
 
+      {/* Floating Medical Icons */}
+      <div className="absolute top-20 left-10 floating-icon">
+        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+          <Brain className="w-6 h-6 text-primary" />
+        </div>
+      </div>
+      <div className="absolute top-40 right-20 floating-icon">
+        <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
+          <Heart className="w-5 h-5 text-accent" />
+        </div>
+      </div>
+      <div className="absolute bottom-40 left-20 floating-icon">
+        <div ref={doctorIconRef} className="w-14 h-14 bg-primary/15 rounded-full flex items-center justify-center">
+          <Stethoscope className="w-7 h-7 text-primary" />
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left">
+            <div className="mb-4">
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                NIMHANS Alumni • Neuro & Spine Surgeon
+              </span>
+            </div>
+            
             <h1 
               ref={titleRef}
               className="text-5xl lg:text-7xl font-bold text-foreground leading-tight mb-6"
             >
-              Advanced
+              Dr. Nisarg
               <span className="block bg-gradient-primary bg-clip-text text-transparent">
-                Neurosurgical
+                Parmar
               </span>
-              Care
             </h1>
             
             <p 
               ref={subtitleRef}
               className="text-xl text-muted-foreground mb-8 max-w-2xl"
             >
-              Leading neurosurgeon providing world-class treatment for complex brain and spinal conditions with cutting-edge technology and compassionate care.
+              A Neuro and Spine Surgeon with advanced training from NIMHANS, India's top neurosurgical institution. 
+              Welcome to the forefront of neurological care excellence.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
@@ -131,7 +178,7 @@ const Hero = () => {
           <div className="relative">
             <div className="hero-image relative">
               <img 
-                src={heroImage} 
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=600&fit=crop&crop=center" 
                 alt="Advanced Medical Facility" 
                 className="w-full h-[600px] object-cover rounded-2xl shadow-large"
               />

@@ -1,8 +1,11 @@
+
 import React, { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Specialties from '@/components/Specialties';
 import About from '@/components/About';
+import Testimonials from '@/components/Testimonials';
+import Appointments from '@/components/Appointments';
 import Contact from '@/components/Contact';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -38,6 +41,8 @@ const Index = () => {
       <Hero />
       <Specialties />
       <About />
+      <Testimonials />
+      <Appointments />
       <Contact />
     </div>
   );
