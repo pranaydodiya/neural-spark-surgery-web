@@ -144,9 +144,14 @@ const Appointments = () => {
                   <p className="text-sm md:text-base text-muted-foreground">{appointment.timing}</p>
                 </div>
 
-                <Button className="w-full bg-gradient-primary hover:shadow-medium transition-all duration-300 mt-4 md:mt-6 text-sm md:text-base py-2 md:py-3">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Book Appointment
+                <Button 
+                  className="w-full bg-gradient-primary hover:shadow-medium transition-all duration-300 mt-4 md:mt-6 text-sm md:text-base py-2 md:py-3"
+                  asChild
+                >
+                  <a href={`tel:${appointment.phone}`}>
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book Appointment
+                  </a>
                 </Button>
               </CardContent>
             </Card>
