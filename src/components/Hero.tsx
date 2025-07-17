@@ -14,7 +14,7 @@ const Hero = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animated specialty text
+      // Animated specialty text with better mobile support
       const specialties = ["Neurosurgeon", "Spine Surgeon", "Brain Tumor Expert", "NIMHANS Alumni"];
       let currentIndex = 0;
 
@@ -22,16 +22,17 @@ const Hero = () => {
         if (animatedTextRef.current) {
           gsap.to(animatedTextRef.current, {
             opacity: 0,
-            y: -20,
-            duration: 0.5,
+            scale: 0.9,
+            y: -15,
+            duration: 0.6,
             ease: "power2.out",
             onComplete: () => {
               currentIndex = (currentIndex + 1) % specialties.length;
               if (animatedTextRef.current) {
                 animatedTextRef.current.textContent = specialties[currentIndex];
                 gsap.fromTo(animatedTextRef.current,
-                  { opacity: 0, y: 20 },
-                  { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                  { opacity: 0, scale: 0.9, y: 15 },
+                  { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" }
                 );
               }
             }
@@ -47,9 +48,9 @@ const Hero = () => {
 
       // Doctor icon animation (floating stethoscope)
       gsap.to(doctorIconRef.current, {
-        y: -10,
-        rotation: 5,
-        duration: 2.5,
+        y: -12,
+        rotation: 8,
+        duration: 3,
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1
@@ -94,11 +95,11 @@ const Hero = () => {
         repeat: -1
       });
 
-      // Medical icons floating animation - separated for mobile
+      // Enhanced floating animations for mobile visibility
       gsap.to('.floating-icon-1', {
-        y: -15,
-        x: 5,
-        rotation: 10,
+        y: -18,
+        x: 8,
+        rotation: 15,
         duration: 3.5,
         ease: "power2.inOut",
         yoyo: true,
@@ -106,9 +107,9 @@ const Hero = () => {
       });
 
       gsap.to('.floating-icon-2', {
-        y: -20,
-        x: -8,
-        rotation: -12,
+        y: -22,
+        x: -10,
+        rotation: -15,
         duration: 4,
         ease: "power2.inOut",
         yoyo: true,
@@ -117,9 +118,9 @@ const Hero = () => {
       });
 
       gsap.to('.floating-icon-3', {
-        y: -18,
-        x: 10,
-        rotation: 15,
+        y: -20,
+        x: 12,
+        rotation: 18,
         duration: 3.8,
         ease: "power2.inOut",
         yoyo: true,
@@ -149,20 +150,20 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-accent/20 transform rotate-12 scale-150"></div>
       </div>
 
-      {/* Floating Medical Icons - Properly positioned for mobile */}
-      <div className="absolute top-24 left-4 sm:top-28 sm:left-6 md:top-32 md:left-10 floating-icon-1 z-10">
-        <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-primary/15 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm border border-primary/20">
-          <Brain className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-primary" />
+      {/* Enhanced Floating Medical Icons - More visible on mobile */}
+      <div className="absolute top-28 left-4 sm:top-32 sm:left-6 md:top-36 md:left-10 floating-icon-1 z-10">
+        <div className="w-18 h-18 sm:w-20 sm:h-20 md:w-22 md:h-22 bg-gradient-to-br from-primary/25 to-primary/35 rounded-full flex items-center justify-center shadow-large backdrop-blur-sm border-2 border-primary/30">
+          <Brain className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 text-primary drop-shadow-lg" />
         </div>
       </div>
-      <div className="absolute top-32 right-4 sm:top-36 sm:right-6 md:top-40 md:right-20 floating-icon-2 z-10">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 bg-accent/15 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm border border-accent/20">
-          <Heart className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-accent" />
+      <div className="absolute top-36 right-4 sm:top-40 sm:right-6 md:top-44 md:right-20 floating-icon-2 z-10">
+        <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gradient-to-br from-accent/25 to-accent/35 rounded-full flex items-center justify-center shadow-large backdrop-blur-sm border-2 border-accent/30">
+          <Heart className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-accent drop-shadow-lg" />
         </div>
       </div>
-      <div className="absolute bottom-40 left-4 sm:bottom-44 sm:left-6 md:bottom-48 md:left-20 floating-icon-3 z-10">
-        <div ref={doctorIconRef} className="w-18 h-18 sm:w-20 sm:h-20 md:w-22 md:h-22 bg-primary/20 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm border border-primary/30">
-          <Stethoscope className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 text-primary" />
+      <div className="absolute bottom-48 left-4 sm:bottom-52 sm:left-6 md:bottom-56 md:left-20 floating-icon-3 z-10">
+        <div ref={doctorIconRef} className="w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 bg-gradient-to-br from-primary/30 to-primary/40 rounded-full flex items-center justify-center shadow-large backdrop-blur-sm border-2 border-primary/40">
+          <Stethoscope className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 text-primary drop-shadow-lg" />
         </div>
       </div>
 
@@ -172,7 +173,7 @@ const Hero = () => {
           {/* Mobile Content First */}
           <div className="text-center mb-8">
             <div className="mb-4">
-              <span className="bg-primary/10 text-primary px-3 py-2 rounded-full text-sm font-medium">
+              <span className="bg-gradient-to-r from-primary/15 to-accent/15 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20">
                 NIMHANS Alumni • Neuro & Spine Surgeon
               </span>
             </div>
@@ -187,27 +188,29 @@ const Hero = () => {
               </span>
             </h1>
 
-            {/* Animated Specialty Text - Enhanced for mobile */}
-            <div className="mb-8 h-16 flex items-center justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-xl blur-md"></div>
-                <span 
-                  ref={animatedTextRef}
-                  className="relative text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent inline-block px-6 py-3 rounded-xl border-2 border-primary/30 backdrop-blur-sm bg-white/20 shadow-large"
-                >
-                  Neurosurgeon
-                </span>
+            {/* Enhanced Animated Specialty Text for Mobile */}
+            <div className="mb-8 h-20 flex items-center justify-center">
+              <div className="relative w-full max-w-sm">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 rounded-2xl blur-lg animate-pulse-glow"></div>
+                <div className="relative bg-gradient-to-r from-white/90 to-white/95 backdrop-blur-lg rounded-2xl border-2 border-primary/30 shadow-large p-4">
+                  <span 
+                    ref={animatedTextRef}
+                    className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent block text-center leading-tight"
+                  >
+                    Neurosurgeon
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Mobile Photo - Smaller size */}
+          {/* Mobile Photo - Smaller size as requested */}
           <div className="relative mb-8">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl shadow-large mx-auto"
+                className="w-56 h-56 sm:w-64 sm:h-64 object-cover rounded-2xl shadow-large mx-auto border-4 border-white/20"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-2xl"></div>
             </div>
@@ -265,7 +268,7 @@ const Hero = () => {
           {/* Desktop Content */}
           <div className="text-left">
             <div className="mb-6">
-              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-base font-medium">
+              <span className="bg-gradient-to-r from-primary/15 to-accent/15 text-primary px-4 py-2 rounded-full text-base font-medium border border-primary/20">
                 NIMHANS Alumni • Neuro & Spine Surgeon
               </span>
             </div>
@@ -277,16 +280,18 @@ const Hero = () => {
               </span>
             </h1>
 
-            {/* Desktop Animated Specialty Text */}
-            <div className="mb-8 h-20 flex items-center">
+            {/* Enhanced Desktop Animated Specialty Text */}
+            <div className="mb-8 h-24 flex items-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-xl blur-lg"></div>
-                <span 
-                  ref={animatedTextRef}
-                  className="relative text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent inline-block px-8 py-4 rounded-xl border-2 border-primary/30 backdrop-blur-sm bg-white/20 shadow-large"
-                >
-                  Neurosurgeon
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 rounded-2xl blur-xl animate-pulse-glow"></div>
+                <div className="relative bg-gradient-to-r from-white/90 to-white/95 backdrop-blur-lg rounded-2xl border-2 border-primary/30 shadow-large px-8 py-5">
+                  <span 
+                    ref={animatedTextRef}
+                    className="text-4xl xl:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent block leading-tight"
+                  >
+                    Neurosurgeon
+                  </span>
+                </div>
               </div>
             </div>
             
@@ -331,13 +336,13 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image - Medium size */}
+          {/* Desktop Hero Image - Medium size as requested */}
           <div className="relative">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-full h-[400px] xl:h-[500px] object-cover rounded-2xl shadow-large mx-auto"
+                className="w-full h-[350px] xl:h-[420px] object-cover rounded-2xl shadow-large mx-auto border-4 border-white/20"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent rounded-2xl"></div>
               
