@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Phone, Clock, MapPin } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { gsap } from 'gsap';
 
 const Navigation = () => {
@@ -27,29 +27,21 @@ const Navigation = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    // Enhanced navbar animations
+    // Simple navbar animations without excessive effects
     gsap.fromTo('.nav-logo', 
-      { opacity: 0, scale: 0.5, rotationY: 180 },
-      { opacity: 1, scale: 1, rotationY: 0, duration: 1.2, ease: "back.out(1.7)" }
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
     );
     
     gsap.fromTo('.nav-item', 
-      { opacity: 0, y: -30 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out", delay: 0.4 }
+      { opacity: 0, y: -15 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.3 }
     );
 
     gsap.fromTo('.nav-emergency', 
-      { opacity: 0, scale: 0.8, x: 30 },
-      { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "back.out(1.7)", delay: 0.9 }
+      { opacity: 0, x: 20 },
+      { opacity: 1, x: 0, duration: 0.6, ease: "power2.out", delay: 0.6 }
     );
-
-    // Continuous logo animation
-    gsap.to('.logo-icon', {
-      rotation: 360,
-      duration: 20,
-      ease: "none",
-      repeat: -1
-    });
   }, []);
 
   const navItems = [
@@ -62,83 +54,82 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-gradient-to-r from-primary/95 via-accent/90 to-primary/95 backdrop-blur-xl shadow-glow border-b border-primary/30' 
-        : 'bg-gradient-to-r from-primary/80 via-accent/70 to-primary/80 backdrop-blur-lg'
+        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-primary/10' 
+        : 'bg-white/90 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 lg:h-18">
-          {/* Enhanced Logo with proper alignment */}
+        <div className="flex items-center justify-between h-16">
+          {/* Logo - Fixed and clean */}
           <div className="nav-logo flex items-center space-x-3">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-primary rounded-xl blur-sm opacity-75 animate-pulse-glow"></div>
-              <div className="logo-icon relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-large border border-primary-light/30">
-                <span className="text-white font-bold text-base sm:text-lg">NN</span>
-              </div>
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md">
+              <span className="text-white font-bold text-lg">DN</span>
             </div>
-            <div className="flex flex-col">
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-tight">Dr. Nisarg</h2>
-              <p className="text-xs sm:text-sm text-primary-light font-medium leading-tight">Neurosurgeon</p>
+            <div className="hidden sm:block">
+              <h2 className="text-xl font-bold text-foreground">Dr. Nisarg</h2>
+              <p className="text-sm text-muted-foreground font-medium">Neurosurgeon</p>
+            </div>
+            {/* Mobile: Show name next to logo */}
+            <div className="sm:hidden">
+              <h2 className="text-lg font-bold text-foreground">Dr. Nisarg</h2>
             </div>
           </div>
 
-          {/* Desktop Navigation - Fixed alignment and visibility */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          {/* Desktop Navigation - Clean and readable */}
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="nav-item relative text-white hover:text-accent transition-all duration-300 font-medium text-base xl:text-lg group py-2 px-3"
+                className="nav-item relative text-foreground hover:text-primary transition-colors duration-300 font-medium text-base group"
               >
-                <span className="relative z-10">{item.name}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -z-10"></div>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-primary group-hover:w-full transition-all duration-300"></div>
+                {item.name}
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
               </a>
             ))}
           </div>
 
-          {/* Desktop Emergency Contact - Improved layout */}
-          <div className="nav-emergency hidden lg:flex items-center space-x-3 xl:space-x-4">
-            <div className="flex items-center space-x-2 text-sm bg-white/15 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/25">
-              <Phone className="w-4 h-4 text-accent animate-pulse" />
-              <a href="tel:+918160440014" className="text-white hover:text-accent transition-colors font-medium text-sm">
+          {/* Desktop Emergency Contact - Clean design */}
+          <div className="nav-emergency hidden lg:flex items-center space-x-3">
+            <div className="flex items-center space-x-2 text-sm bg-primary/10 rounded-lg px-3 py-2">
+              <Phone className="w-4 h-4 text-primary" />
+              <a href="tel:+918160440014" className="text-foreground hover:text-primary transition-colors font-medium">
                 +91 8160440014
               </a>
             </div>
             <Button 
               size="sm" 
-              className="bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent hover:shadow-glow transition-all duration-300 border border-accent/30 text-white font-semibold px-4 py-2 text-sm"
+              className="bg-primary hover:bg-primary/90 text-white font-medium px-4 py-2"
               asChild
             >
               <a href="tel:+918160440014">Emergency</a>
             </Button>
           </div>
 
-          {/* Enhanced Mobile Menu Button */}
+          {/* Mobile Menu Button - Clean design */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden relative p-3 rounded-xl bg-white/15 backdrop-blur-sm hover:bg-white/25 transition-all duration-300 border border-white/25"
+            className="lg:hidden p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-300"
             aria-label="Toggle menu"
           >
-            <div className="absolute inset-0 bg-gradient-primary rounded-xl opacity-30 blur-sm"></div>
             {isOpen ? (
-              <X className="relative w-6 h-6 text-white" />
+              <X className="w-6 h-6 text-primary" />
             ) : (
-              <Menu className="relative w-6 h-6 text-white" />
+              <Menu className="w-6 h-6 text-primary" />
             )}
           </button>
         </div>
 
-        {/* Enhanced Mobile Navigation - Full visibility */}
+        {/* Mobile Navigation - Improved visibility */}
         {isOpen && (
-          <div className="lg:hidden fixed top-16 left-0 right-0 bg-gradient-to-b from-primary/98 via-accent/95 to-primary/98 backdrop-blur-xl border-b border-primary/30 shadow-glow z-50">
-            <div className="px-4 py-6 space-y-4">
-              {navItems.map((item, index) => (
+          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-lg border-b border-primary/20 shadow-xl z-50">
+            <div className="px-4 py-6 space-y-3">
+              {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="mobile-menu-item block py-4 px-6 text-lg font-medium text-white hover:text-accent hover:bg-white/15 rounded-xl transition-all duration-300 border border-transparent hover:border-accent/30 backdrop-blur-sm"
+                  className="mobile-menu-item block py-3 px-4 text-lg font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -146,19 +137,19 @@ const Navigation = () => {
               ))}
               
               {/* Mobile Emergency Contact */}
-              <div className="mobile-menu-item border-t border-white/20 pt-6 mt-6">
-                <div className="flex items-center space-x-3 mb-4 bg-white/15 rounded-lg p-4 border border-white/25">
-                  <Phone className="w-5 h-5 text-accent animate-pulse" />
+              <div className="mobile-menu-item border-t border-primary/20 pt-4 mt-4">
+                <div className="flex items-center space-x-3 mb-3 bg-primary/10 rounded-lg p-3">
+                  <Phone className="w-5 h-5 text-primary" />
                   <a 
                     href="tel:+918160440014" 
-                    className="text-lg font-medium text-white hover:text-accent transition-colors"
+                    className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                   >
                     +91 8160440014
                   </a>
                 </div>
                 <Button 
                   size="lg" 
-                  className="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent hover:shadow-glow transition-all duration-300 border border-accent/30 text-white font-semibold py-4"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3"
                   asChild
                 >
                   <a href="tel:+918160440014">Emergency Call</a>
