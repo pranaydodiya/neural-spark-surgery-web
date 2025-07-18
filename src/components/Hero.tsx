@@ -11,14 +11,15 @@ const Hero = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const doctorIconRef = useRef<HTMLDivElement>(null);
   const animatedTextRef = useRef<HTMLSpanElement>(null);
+  const mobileAnimatedTextRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Working specialty animation for both mobile and desktop
       const specialties = ["Neurosurgeon", "Spine Surgeon", "Brain Tumor Expert", "NIMHANS Alumni"];
       let currentIndex = 0;
 
-      const animateSpecialty = () => {
+      // Desktop specialty animation
+      const animateDesktopSpecialty = () => {
         if (animatedTextRef.current) {
           gsap.to(animatedTextRef.current, {
             opacity: 0,
@@ -40,25 +41,49 @@ const Hero = () => {
         }
       };
 
-      // Start the specialty animation loop
-      const specialtyInterval = setInterval(animateSpecialty, 3000);
+      // Mobile specialty animation
+      const animateMobileSpecialty = () => {
+        if (mobileAnimatedTextRef.current) {
+          gsap.to(mobileAnimatedTextRef.current, {
+            opacity: 0,
+            scale: 0.95,
+            y: -10,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              currentIndex = (currentIndex + 1) % specialties.length;
+              if (mobileAnimatedTextRef.current) {
+                mobileAnimatedTextRef.current.textContent = specialties[currentIndex];
+                gsap.fromTo(mobileAnimatedTextRef.current,
+                  { opacity: 0, scale: 0.95, y: 10 },
+                  { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }
+                );
+              }
+            }
+          });
+        }
+      };
 
-      // Smaller, controlled floating animations - positioned away from text
+      // Start both animation loops
+      const desktopSpecialtyInterval = setInterval(animateDesktopSpecialty, 3000);
+      const mobileSpecialtyInterval = setInterval(animateMobileSpecialty, 3000);
+
+      // Positioned floating animations - away from text areas
       gsap.to('.floating-icon-1', {
-        y: -10,
-        x: 5,
-        rotation: 10,
-        duration: 3,
+        y: -8,
+        x: 3,
+        rotation: 5,
+        duration: 2.5,
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1
       });
 
       gsap.to('.floating-icon-2', {
-        y: -12,
-        x: -5,
-        rotation: -10,
-        duration: 3.5,
+        y: -10,
+        x: -3,
+        rotation: -5,
+        duration: 3,
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1,
@@ -66,20 +91,19 @@ const Hero = () => {
       });
 
       gsap.to('.floating-icon-3', {
-        y: -8,
-        x: 8,
-        rotation: 12,
-        duration: 3.2,
+        y: -6,
+        x: 4,
+        rotation: 6,
+        duration: 2.8,
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1,
         delay: 0.5
       });
 
-      // Simple doctor icon animation
-      gsap.to(doctorIconRef.current, {
+      // Hero image float
+      gsap.to('.hero-image', {
         y: -8,
-        rotation: 5,
         duration: 2.5,
         ease: "power2.inOut",
         yoyo: true,
@@ -109,17 +133,9 @@ const Hero = () => {
         "-=0.2"
       );
 
-      // Simple hero image float
-      gsap.to('.hero-image', {
-        y: -10,
-        duration: 3,
-        ease: "power2.inOut",
-        yoyo: true,
-        repeat: -1
-      });
-
       return () => {
-        clearInterval(specialtyInterval);
+        clearInterval(desktopSpecialtyInterval);
+        clearInterval(mobileSpecialtyInterval);
       };
 
     }, heroRef);
@@ -135,27 +151,26 @@ const Hero = () => {
 
   return (
     <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary-light/5 to-accent-light/10 pt-20">
-      {/* Smaller, positioned floating icons - away from main content */}
-      <div className="absolute top-32 left-8 floating-icon-1 z-10">
-        <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center shadow-lg">
-          <Brain className="w-7 h-7 text-primary" />
+      {/* Floating icons - positioned to avoid text overlap */}
+      <div className="absolute top-24 left-4 md:left-8 floating-icon-1 z-10">
+        <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center shadow-lg">
+          <Brain className="w-6 h-6 md:w-7 md:h-7 text-primary" />
         </div>
       </div>
-      <div className="absolute top-40 right-8 floating-icon-2 z-10">
-        <div className="w-12 h-12 bg-gradient-to-br from-accent/20 to-accent/30 rounded-full flex items-center justify-center shadow-lg">
-          <Heart className="w-6 h-6 text-accent" />
+      <div className="absolute top-32 right-4 md:right-8 floating-icon-2 z-10">
+        <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-accent/20 to-accent/30 rounded-full flex items-center justify-center shadow-lg">
+          <Heart className="w-5 h-5 md:w-6 md:h-6 text-accent" />
         </div>
       </div>
-      <div className="absolute bottom-40 left-12 floating-icon-3 z-10">
-        <div ref={doctorIconRef} className="w-16 h-16 bg-gradient-to-br from-primary/25 to-primary/35 rounded-full flex items-center justify-center shadow-lg">
-          <Stethoscope className="w-8 h-8 text-primary" />
+      <div className="absolute bottom-32 left-6 md:left-12 floating-icon-3 z-10">
+        <div ref={doctorIconRef} className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary/25 to-primary/35 rounded-full flex items-center justify-center shadow-lg">
+          <Stethoscope className="w-7 h-7 md:w-8 md:h-8 text-primary" />
         </div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-12">
-        {/* Mobile Layout: Name first, then photo */}
+        {/* Mobile Layout */}
         <div className="lg:hidden">
-          {/* Mobile Content First */}
           <div className="text-center mb-8">
             <div className="mb-4">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20">
@@ -173,12 +188,12 @@ const Hero = () => {
               </span>
             </h1>
 
-            {/* Fixed Mobile Animated Specialty Text */}
+            {/* Mobile Animated Specialty Text - Fixed and Working */}
             <div className="mb-8 h-16 flex items-center justify-center">
               <div className="relative">
-                <div className="bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm rounded-xl border border-primary/20 shadow-lg px-6 py-3">
+                <div className="bg-gradient-to-r from-primary/15 to-accent/15 backdrop-blur-sm rounded-xl border border-primary/25 shadow-lg px-6 py-3">
                   <span 
-                    ref={animatedTextRef}
+                    ref={mobileAnimatedTextRef}
                     className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block text-center"
                   >
                     Neurosurgeon
@@ -188,13 +203,13 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Mobile Photo - Small size */}
+          {/* Mobile Photo - Better size */}
           <div className="relative mb-8">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-48 h-48 sm:w-56 sm:h-56 object-cover rounded-2xl shadow-lg mx-auto border-2 border-white/20"
+                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl shadow-lg mx-auto border-2 border-white/30"
               />
             </div>
           </div>
@@ -205,7 +220,7 @@ const Hero = () => {
               ref={subtitleRef}
               className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto"
             >
-              A Neuro and Spine Surgeon with advanced training from NIMHANS, India's top neurosurgical institution.
+              Leading expert in neurosurgery and spine surgery with prestigious NIMHANS training. Specializing in complex brain and spine procedures with cutting-edge techniques.
             </p>
 
             <div className="flex flex-col gap-4 mb-8">
@@ -245,9 +260,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Desktop Layout: Side by side */}
+        {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
-          {/* Desktop Content */}
           <div className="text-left">
             <div className="mb-6">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-base font-medium border border-primary/20">
@@ -265,7 +279,7 @@ const Hero = () => {
             {/* Desktop Animated Specialty Text */}
             <div className="mb-8 h-20 flex items-center">
               <div className="relative">
-                <div className="bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm rounded-2xl border border-primary/20 shadow-lg px-8 py-4">
+                <div className="bg-gradient-to-r from-primary/15 to-accent/15 backdrop-blur-sm rounded-2xl border border-primary/25 shadow-lg px-8 py-4">
                   <span 
                     ref={animatedTextRef}
                     className="text-3xl xl:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block"
@@ -277,7 +291,7 @@ const Hero = () => {
             </div>
             
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-              A Neuro and Spine Surgeon with advanced training from NIMHANS, India's top neurosurgical institution.
+              Leading expert in neurosurgery and spine surgery with prestigious NIMHANS training. Specializing in complex brain and spine procedures with cutting-edge techniques.
             </p>
 
             <div className="flex gap-4 justify-start mb-12">
@@ -316,13 +330,13 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image - Medium size */}
-          <div className="relative">
+          {/* Desktop Hero Image - Better sizing and alignment */}
+          <div className="relative flex justify-center">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-full h-[380px] xl:h-[420px] object-cover rounded-2xl shadow-lg mx-auto border-2 border-white/20"
+                className="w-96 h-96 xl:w-[420px] xl:h-[420px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
               />
             </div>
           </div>

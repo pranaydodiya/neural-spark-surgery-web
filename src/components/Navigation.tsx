@@ -27,7 +27,7 @@ const Navigation = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    // Simple navbar animations without excessive effects
+    // Simple navbar animations
     gsap.fromTo('.nav-logo', 
       { opacity: 0, y: -20 },
       { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
@@ -61,7 +61,7 @@ const Navigation = () => {
     }`}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Fixed and clean */}
+          {/* Logo - Fixed positioning */}
           <div className="nav-logo flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-lg">DN</span>
@@ -76,7 +76,7 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation - Clean and readable */}
+          {/* Desktop Navigation - Better spacing and visibility */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
@@ -90,7 +90,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop Emergency Contact - Clean design */}
+          {/* Desktop Emergency Contact - Better alignment */}
           <div className="nav-emergency hidden lg:flex items-center space-x-3">
             <div className="flex items-center space-x-2 text-sm bg-primary/10 rounded-lg px-3 py-2">
               <Phone className="w-4 h-4 text-primary" />
@@ -107,7 +107,7 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Clean design */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-300"
@@ -121,9 +121,9 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - Improved visibility */}
+        {/* Mobile Navigation - Full visibility and proper spacing */}
         {isOpen && (
-          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-lg border-b border-primary/20 shadow-xl z-50">
+          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-lg border-b border-primary/20 shadow-xl z-50 max-h-screen overflow-y-auto">
             <div className="px-4 py-6 space-y-3">
               {navItems.map((item) => (
                 <a
