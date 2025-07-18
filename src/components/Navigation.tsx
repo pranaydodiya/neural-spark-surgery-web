@@ -7,10 +7,16 @@ import { gsap } from 'gsap';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Calculate scroll progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -54,11 +60,16 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-primary/10' 
-        : 'bg-white/90 backdrop-blur-sm'
+        ? 'bg-gradient-to-r from-primary/95 to-accent/95 backdrop-blur-md shadow-xl border-b border-white/20' 
+        : 'bg-gradient-to-r from-primary/90 to-accent/90 backdrop-blur-sm'
     }`}>
+      {/* Scroll Progress Bar */}
+      <div 
+        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-white to-white/80 transition-all duration-300 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Fixed positioning */}
@@ -67,12 +78,13 @@ const Navigation = () => {
               <span className="text-white font-bold text-lg">DN</span>
             </div>
             <div className="hidden sm:block">
-              <h2 className="text-xl font-bold text-foreground">Dr. Nisarg</h2>
-              <p className="text-sm text-muted-foreground font-medium">Neurosurgeon</p>
+              <h2 className="text-xl font-bold text-white">Dr. Nisarg</h2>
+              <p className="text-sm text-white/80 font-medium">Neurosurgeon</p>
             </div>
-            {/* Mobile: Show name next to logo */}
+            {/* Mobile: Show name and title next to logo */}
             <div className="sm:hidden">
-              <h2 className="text-lg font-bold text-foreground">Dr. Nisarg</h2>
+              <h2 className="text-base font-bold text-white leading-tight">Dr. Nisarg</h2>
+              <p className="text-xs text-white/80 font-medium">Neurosurgeon</p>
             </div>
           </div>
 
@@ -82,25 +94,25 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="nav-item relative text-foreground hover:text-primary transition-colors duration-300 font-medium text-base group"
+                className="nav-item relative text-white hover:text-white/80 transition-colors duration-300 font-medium text-base group"
               >
                 {item.name}
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></div>
               </a>
             ))}
           </div>
 
           {/* Desktop Emergency Contact - Better alignment */}
           <div className="nav-emergency hidden lg:flex items-center space-x-3">
-            <div className="flex items-center space-x-2 text-sm bg-primary/10 rounded-lg px-3 py-2">
-              <Phone className="w-4 h-4 text-primary" />
-              <a href="tel:+918160440014" className="text-foreground hover:text-primary transition-colors font-medium">
+            <div className="flex items-center space-x-2 text-sm bg-white/20 rounded-lg px-3 py-2">
+              <Phone className="w-4 h-4 text-white" />
+              <a href="tel:+918160440014" className="text-white hover:text-white/80 transition-colors font-medium">
                 +91 8160440014
               </a>
             </div>
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-white font-medium px-4 py-2"
+              className="bg-white text-primary hover:bg-white/90 hover:text-primary/90 font-medium px-4 py-2"
               asChild
             >
               <a href="tel:+918160440014">Emergency</a>
@@ -110,13 +122,13 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors duration-300"
+            className="lg:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-300"
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <X className="w-6 h-6 text-primary" />
+              <X className="w-6 h-6 text-white" />
             ) : (
-              <Menu className="w-6 h-6 text-primary" />
+              <Menu className="w-6 h-6 text-white" />
             )}
           </button>
         </div>
