@@ -123,7 +123,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation - Full visibility and proper spacing */}
         {isOpen && (
-          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-lg border-b border-primary/20 shadow-xl z-50 max-h-screen overflow-y-auto">
+          <div className="lg:hidden fixed top-16 left-0 right-0 bg-white border-b border-primary/20 shadow-xl z-50 max-h-screen overflow-y-auto">
             <div className="px-4 py-6 space-y-3">
               {navItems.map((item) => (
                 <a
