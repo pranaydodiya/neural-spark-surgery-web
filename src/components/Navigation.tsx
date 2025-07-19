@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
@@ -70,7 +71,7 @@ const Navigation = () => {
         className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-white to-white/80 transition-all duration-300 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
-      <div className="w-full px-2 sm:px-4 lg:px-6">
+      <div className="w-full px-3 sm:px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
           {/* Logo - Better mobile positioning */}
           <div className="nav-logo flex items-center space-x-2 sm:space-x-3 flex-shrink-0 min-w-0">
@@ -130,15 +131,15 @@ const Navigation = () => {
       </div>
     </nav>
 
-    {/* Mobile Navigation - Fixed positioning and visibility */}
+    {/* Mobile Navigation - Fixed visibility and positioning */}
     {isOpen && (
-      <div className="lg:hidden fixed top-16 left-0 right-0 bg-white border-b border-primary/20 shadow-xl z-[99] max-h-[calc(100vh-4rem)] overflow-y-auto">
-        <div className="px-4 py-6 space-y-3">
+      <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-primary/20 shadow-2xl z-[99] max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="px-4 py-6 space-y-2">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="mobile-menu-item block py-3 px-4 text-lg font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+              className="mobile-menu-item block py-4 px-4 text-lg font-medium text-gray-800 hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 border border-transparent hover:border-primary/20"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
@@ -146,19 +147,22 @@ const Navigation = () => {
           ))}
           
           {/* Mobile Emergency Contact */}
-          <div className="mobile-menu-item border-t border-primary/20 pt-4 mt-4">
-            <div className="flex items-center space-x-3 mb-3 bg-primary/10 rounded-lg p-3">
+          <div className="mobile-menu-item border-t border-primary/20 pt-6 mt-6">
+            <div className="flex items-center space-x-3 mb-4 bg-primary/10 rounded-xl p-4 border border-primary/20">
               <Phone className="w-5 h-5 text-primary" />
-              <a 
-                href="tel:+918160440014" 
-                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-              >
-                +91 8160440014
-              </a>
+              <div>
+                <p className="text-sm text-gray-600 font-medium">Emergency Contact</p>
+                <a 
+                  href="tel:+918160440014" 
+                  className="text-lg font-bold text-gray-800 hover:text-primary transition-colors"
+                >
+                  +91 8160440014
+                </a>
+              </div>
             </div>
             <Button 
               size="lg" 
-              className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3"
+              className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 text-white font-medium py-4 text-lg"
               asChild
             >
               <a href="tel:+918160440014">Emergency Call</a>
