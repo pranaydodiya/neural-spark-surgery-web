@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Award, Users, Clock, Stethoscope, Brain, Heart } from 'lucide-react';
@@ -259,9 +260,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Fixed spacing and alignment */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-12 xl:gap-16 items-center max-w-7xl mx-auto">
-          <div className="text-left">
+        {/* Desktop Layout - Optimized to fill space above photo */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-12 items-start max-w-7xl mx-auto">
+          <div className="text-left flex flex-col justify-center h-full">
             <div className="mb-6">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-base font-medium border border-primary/20">
                 NIMHANS Alumni • Neuro & Spine Surgeon
@@ -329,14 +330,43 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image - Fixed positioning and alignment */}
-          <div className="relative flex justify-center items-center">
+          {/* Desktop Hero Image - Better positioned to fill available space */}
+          <div className="relative flex flex-col items-center justify-start pt-4">
+            {/* Additional info above the photo */}
+            <div className="mb-6 text-center">
+              <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20 shadow-lg backdrop-blur-sm">
+                <h3 className="text-2xl font-bold text-foreground mb-2">Expert Care</h3>
+                <p className="text-lg text-muted-foreground mb-4">Trusted by thousands of patients across India</p>
+                <div className="flex justify-center space-x-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary">15+</div>
+                    <div className="text-sm text-muted-foreground">Years Experience</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-accent">500+</div>
+                    <div className="text-sm text-muted-foreground">Surgeries</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[420px] xl:h-[420px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
+                className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[400px] xl:h-[400px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
               />
+            </div>
+
+            {/* Credentials below photo */}
+            <div className="mt-6 text-center">
+              <div className="bg-gradient-to-r from-accent/5 to-primary/5 rounded-xl p-4 border border-accent/20">
+                <div className="flex justify-center items-center space-x-2 mb-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-foreground">NIMHANS Certified</span>
+                </div>
+                <p className="text-sm text-muted-foreground">National Institute of Mental Health & Neurosciences</p>
+              </div>
             </div>
           </div>
         </div>
