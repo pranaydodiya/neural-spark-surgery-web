@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
@@ -71,25 +70,20 @@ const Navigation = () => {
         className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-white to-white/80 transition-all duration-300 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
-      <div className="w-full px-3 sm:px-4 lg:px-6">
+      <div className="w-full px-2 sm:px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
-          {/* Logo - Responsive sizing */}
-          <div className="nav-logo flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md">
+          {/* Logo - Better mobile positioning */}
+          <div className="nav-logo flex items-center space-x-2 sm:space-x-3 flex-shrink-0 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
               <span className="text-white font-bold text-sm sm:text-lg">DN</span>
             </div>
-            <div className="hidden sm:block">
-              <h2 className="text-lg sm:text-xl font-bold text-white leading-tight">Dr. Nisarg</h2>
-              <p className="text-xs sm:text-sm text-white/80 font-medium">Neurosurgeon</p>
-            </div>
-            {/* Mobile: Show full name properly */}
-            <div className="sm:hidden">
-              <h2 className="text-sm font-bold text-white leading-tight">Dr. Nisarg</h2>
-              <p className="text-xs text-white/80 font-medium">Neurosurgeon</p>
+            <div className="min-w-0">
+              <h2 className="text-sm sm:text-lg lg:text-xl font-bold text-white leading-tight truncate">Dr. Nisarg</h2>
+              <p className="text-xs sm:text-sm text-white/80 font-medium truncate">Neurosurgeon</p>
             </div>
           </div>
 
-          {/* Desktop Navigation - Better spacing and visibility */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
             {navItems.map((item) => (
               <a
@@ -103,7 +97,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop Emergency Contact - Better alignment */}
+          {/* Desktop Emergency Contact */}
           <div className="nav-emergency hidden lg:flex items-center space-x-3 flex-shrink-0">
             <div className="flex items-center space-x-2 text-sm bg-white/20 rounded-lg px-3 py-2">
               <Phone className="w-4 h-4 text-white" />
@@ -120,26 +114,26 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Properly sized and positioned */}
+          {/* Mobile Menu Button - Fixed positioning and sizing */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-300 z-[110] flex-shrink-0 min-w-[40px] min-h-[40px] flex items-center justify-center"
+            className="lg:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-300 z-[110] flex-shrink-0 w-10 h-10 flex items-center justify-center ml-2"
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <X className="w-5 h-5 text-white" />
             ) : (
-              <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <Menu className="w-5 h-5 text-white" />
             )}
           </button>
         </div>
       </div>
     </nav>
 
-    {/* Mobile Navigation - Separate from main nav with proper viewport handling */}
+    {/* Mobile Navigation - Fixed positioning and visibility */}
     {isOpen && (
       <div className="lg:hidden fixed top-16 left-0 right-0 bg-white border-b border-primary/20 shadow-xl z-[99] max-h-[calc(100vh-4rem)] overflow-y-auto">
-        <div className="px-3 sm:px-4 py-4 sm:py-6 space-y-2 sm:space-y-3">
+        <div className="px-4 py-6 space-y-3">
           {navItems.map((item) => (
             <a
               key={item.name}

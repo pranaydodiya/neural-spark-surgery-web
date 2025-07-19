@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Award, Users, Clock, Stethoscope, Brain, Heart } from 'lucide-react';
@@ -260,8 +259,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">
+        {/* Desktop Layout - Fixed spacing and alignment */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-12 xl:gap-16 items-center max-w-7xl mx-auto">
           <div className="text-left">
             <div className="mb-6">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-base font-medium border border-primary/20">
@@ -330,8 +329,8 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image - Better sizing and alignment */}
-          <div className="relative flex justify-start lg:justify-center xl:justify-start">
+          {/* Desktop Hero Image - Fixed positioning and alignment */}
+          <div className="relative flex justify-center items-center">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
