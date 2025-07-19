@@ -261,7 +261,7 @@ const Hero = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-12 items-center max-w-7xl mx-auto">
           <div className="text-left">
             <div className="mb-6">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-base font-medium border border-primary/20">
@@ -331,12 +331,12 @@ const Hero = () => {
           </div>
 
           {/* Desktop Hero Image - Better sizing and alignment */}
-          <div className="relative flex justify-center">
+          <div className="relative flex justify-start lg:justify-center xl:justify-start">
             <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-96 h-96 xl:w-[420px] xl:h-[420px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
+                className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[420px] xl:h-[420px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
               />
             </div>
           </div>
