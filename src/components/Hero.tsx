@@ -143,6 +143,20 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleScheduleConsultation = () => {
+    const appointmentsSection = document.querySelector('#appointments');
+    if (appointmentsSection) {
+      appointmentsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleViewSpecialties = () => {
+    const specialtiesSection = document.querySelector('#specialties');
+    if (specialtiesSection) {
+      specialtiesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const stats = [
     { icon: Award, label: '10+ Years', description: 'NIMHANS Alumni' },
     { icon: Users, label: '3000+', description: 'Patients Treated' },
@@ -169,8 +183,37 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 py-12">
-        {/* Mobile Layout */}
+        {/* Mobile Layout - Photo Above Text */}
         <div className="lg:hidden">
+          {/* Mobile Photo First */}
+          <div className="relative mb-8">
+            <div className="hero-image relative">
+              <img 
+                src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
+                alt="Dr. Nisarg Parmar - Neurosurgeon" 
+                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl shadow-lg mx-auto border-2 border-white/30"
+              />
+            </div>
+          </div>
+
+          {/* Expert Care Section Below Photo */}
+          <div className="mb-6 text-center">
+            <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20 shadow-lg backdrop-blur-sm">
+              <h3 className="text-2xl font-bold text-foreground mb-2">Expert Care</h3>
+              <p className="text-lg text-muted-foreground mb-4">Trusted by thousands of patients across India</p>
+              <div className="flex justify-center space-x-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">15+</div>
+                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-accent">500+</div>
+                  <div className="text-sm text-muted-foreground">Surgeries</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center mb-8">
             <div className="mb-4">
               <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20">
@@ -188,7 +231,7 @@ const Hero = () => {
               </span>
             </h1>
 
-            {/* Mobile Animated Specialty Text - Fixed and Working */}
+            {/* Mobile Animated Specialty Text */}
             <div className="mb-8 h-16 flex items-center justify-center">
               <div className="relative">
                 <div className="bg-gradient-to-r from-primary/15 to-accent/15 backdrop-blur-sm rounded-xl border border-primary/25 shadow-lg px-6 py-3">
@@ -200,17 +243,6 @@ const Hero = () => {
                   </span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Mobile Photo - Better size */}
-          <div className="relative mb-8">
-            <div className="hero-image relative">
-              <img 
-                src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
-                alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl shadow-lg mx-auto border-2 border-white/30"
-              />
             </div>
           </div>
 
@@ -227,17 +259,16 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="hero-button bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 text-lg px-8 py-6"
-                asChild
+                onClick={handleScheduleConsultation}
               >
-                <a href="tel:+918160440014">
-                  Schedule Consultation
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+                Schedule Consultation
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 className="hero-button border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-lg px-8 py-6"
+                onClick={handleViewSpecialties}
               >
                 View Specialties
               </Button>
@@ -260,7 +291,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Optimized to fill space above photo */}
+        {/* Desktop Layout - Side by Side */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-12 items-start max-w-7xl mx-auto">
           <div className="text-left flex flex-col justify-center h-full">
             <div className="mb-6">
@@ -298,17 +329,16 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="hero-button bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 text-lg px-8 py-6"
-                asChild
+                onClick={handleScheduleConsultation}
               >
-                <a href="tel:+918160440014">
-                  Schedule Consultation
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+                Schedule Consultation
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 className="hero-button border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-lg px-8 py-6"
+                onClick={handleViewSpecialties}
               >
                 View Specialties
               </Button>
@@ -330,9 +360,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image - Better positioned to fill available space */}
+          {/* Desktop Hero Image with Expert Care Section */}
           <div className="relative flex flex-col items-center justify-start pt-4">
-            {/* Additional info above the photo */}
+            {/* Expert Care Section Above Photo */}
             <div className="mb-6 text-center">
               <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20 shadow-lg backdrop-blur-sm">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Expert Care</h3>

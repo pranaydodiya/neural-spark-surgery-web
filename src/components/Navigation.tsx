@@ -50,6 +50,17 @@ const Navigation = () => {
     );
   }, []);
 
+  const handleNavClick = (href: string) => {
+    setIsOpen(false);
+    
+    if (href.startsWith('#')) {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -90,7 +101,11 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="nav-item relative text-white hover:text-white/80 transition-colors duration-300 font-medium text-base group"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                className="nav-item relative text-white hover:text-white/80 transition-colors duration-300 font-medium text-base group cursor-pointer"
               >
                 {item.name}
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></div>
@@ -115,7 +130,7 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button - Fixed positioning and sizing */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-300 z-[110] flex-shrink-0 w-10 h-10 flex items-center justify-center ml-2"
@@ -131,16 +146,19 @@ const Navigation = () => {
       </div>
     </nav>
 
-    {/* Mobile Navigation - Fixed visibility and positioning */}
+    {/* Mobile Navigation - Improved visibility and positioning */}
     {isOpen && (
-      <div className="lg:hidden fixed top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-primary/20 shadow-2xl z-[99] max-h-[calc(100vh-4rem)] overflow-y-auto">
-        <div className="px-4 py-6 space-y-2">
+      <div className="lg:hidden fixed inset-0 top-16 bg-white z-[99] overflow-y-auto">
+        <div className="px-4 py-6 space-y-2 min-h-full">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               className="mobile-menu-item block py-4 px-4 text-lg font-medium text-gray-800 hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 border border-transparent hover:border-primary/20"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.href);
+              }}
             >
               {item.name}
             </a>
