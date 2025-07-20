@@ -368,36 +368,51 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Desktop Hero Image with Expert Care Section */}
-          <div className="relative flex flex-col items-center justify-start pt-4">
-            {/* Expert Care Section Above Photo */}
-            <div className="mb-6 text-center">
+          {/* Desktop Hero Image with Professional Layout */}
+          <div className="relative flex flex-col items-center justify-start pt-8">
+            {/* Dr. Nisarg's Photo - Positioned Above Expert Care */}
+            <div className="hero-image relative mb-8">
+              <img 
+                src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
+                alt="Dr. Nisarg Parmar - Neurosurgeon" 
+                className="w-72 h-72 lg:w-80 lg:h-80 xl:w-88 xl:h-88 object-cover object-center rounded-2xl shadow-xl border-3 border-white/40"
+              />
+            </div>
+
+            {/* Expert Care Section Below Photo - Clean Separation */}
+            <div className="w-full text-center mb-6">
               <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border border-primary/20 shadow-lg backdrop-blur-sm">
-                <h3 className="text-2xl font-bold text-foreground mb-2">Expert Care</h3>
-                <p className="text-lg text-muted-foreground mb-4">Trusted by thousands of patients across India</p>
-                <div className="flex justify-center space-x-4">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary">15+</div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Expert Care</h3>
+                <p className="text-lg text-muted-foreground mb-5">Trusted by thousands of patients across India</p>
+                
+                {/* Experience Stats in Clean Layout */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="text-center p-3 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border border-primary/15">
+                    <div className="text-3xl font-bold text-primary mb-1">15+</div>
                     <div className="text-sm text-muted-foreground">Years Experience</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">500+</div>
+                  <div className="text-center p-3 bg-gradient-to-br from-accent/5 to-accent/10 rounded-xl border border-accent/15">
+                    <div className="text-3xl font-bold text-accent mb-1">500+</div>
                     <div className="text-sm text-muted-foreground">Surgeries</div>
+                  </div>
+                </div>
+
+                {/* Key Expertise Points */}
+                <div className="space-y-2 text-left max-w-md mx-auto">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                    <p className="text-sm text-muted-foreground">NIMHANS Certified Specialist</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
+                    <p className="text-sm text-muted-foreground">Complex Brain & Spine Surgery Expert</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="hero-image relative">
-              <img 
-                src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
-                alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[400px] xl:h-[400px] object-cover object-center rounded-2xl shadow-lg border-2 border-white/30"
-              />
-            </div>
-
-            {/* Credentials below photo */}
-            <div className="mt-6 text-center">
+            {/* Professional Credentials at Bottom */}
+            <div className="w-full text-center">
               <div className="bg-gradient-to-r from-accent/5 to-primary/5 rounded-xl p-4 border border-accent/20">
                 <div className="flex justify-center items-center space-x-2 mb-2">
                   <Award className="w-5 h-5 text-primary" />
