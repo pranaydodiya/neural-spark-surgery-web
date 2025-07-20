@@ -133,7 +133,28 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
+  html, body {
     @apply bg-background text-foreground;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent horizontal scroll and ensure proper mobile viewport */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile viewport optimization */
+  @media (max-width: 1024px) {
+    * {
+      max-width: 100vw;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
   }
 }

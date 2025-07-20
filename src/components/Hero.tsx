@@ -164,49 +164,49 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary-light/5 to-accent-light/10 pt-16 lg:pt-20">
+    <section id="home" ref={heroRef} className="relative min-h-screen w-full flex items-center justify-center overflow-x-hidden bg-gradient-to-br from-background via-primary-light/5 to-accent-light/10 pt-16 lg:pt-20">
       {/* Floating icons - positioned to avoid text overlap */}
-      <div className="absolute top-20 left-2 md:left-8 floating-icon-1 z-10">
-        <div className="w-8 h-8 md:w-14 md:h-14 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center shadow-lg">
-          <Brain className="w-4 h-4 md:w-7 md:h-7 text-primary" />
+      <div className="absolute top-20 left-1 sm:left-2 md:left-8 floating-icon-1 z-10">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-14 md:h-14 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center shadow-lg">
+          <Brain className="w-3 h-3 sm:w-4 sm:h-4 md:w-7 md:h-7 text-primary" />
         </div>
       </div>
-      <div className="absolute top-28 right-2 md:right-8 floating-icon-2 z-10">
-        <div className="w-6 h-6 md:w-12 md:h-12 bg-gradient-to-br from-accent/20 to-accent/30 rounded-full flex items-center justify-center shadow-lg">
-          <Heart className="w-3 h-3 md:w-6 md:h-6 text-accent" />
+      <div className="absolute top-24 sm:top-28 right-1 sm:right-2 md:right-8 floating-icon-2 z-10">
+        <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-12 md:h-12 bg-gradient-to-br from-accent/20 to-accent/30 rounded-full flex items-center justify-center shadow-lg">
+          <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-6 md:h-6 text-accent" />
         </div>
       </div>
-      <div className="absolute bottom-24 left-2 md:left-12 floating-icon-3 z-10">
-        <div ref={doctorIconRef} className="w-10 h-10 md:w-16 md:h-16 bg-gradient-to-br from-primary/25 to-primary/35 rounded-full flex items-center justify-center shadow-lg">
-          <Stethoscope className="w-5 h-5 md:w-8 md:h-8 text-primary" />
+      <div className="absolute bottom-20 sm:bottom-24 left-1 sm:left-2 md:left-12 floating-icon-3 z-10">
+        <div ref={doctorIconRef} className="w-8 h-8 sm:w-10 sm:h-10 md:w-16 md:h-16 bg-gradient-to-br from-primary/25 to-primary/35 rounded-full flex items-center justify-center shadow-lg">
+          <Stethoscope className="w-4 h-4 sm:w-5 sm:h-5 md:w-8 md:h-8 text-primary" />
         </div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-6 lg:py-12 max-w-full overflow-x-hidden">
-        {/* Mobile Layout - Photo Above Text */}
-        <div className="lg:hidden">
-          {/* Mobile Photo First - Smaller size */}
-          <div className="relative mb-6">
-            <div className="hero-image relative flex justify-center">
+      <div className="container mx-auto px-2 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-12 w-full max-w-7xl">
+        {/* Mobile Layout - Optimized for all screen sizes */}
+        <div className="lg:hidden w-full">
+          {/* Mobile Photo - Perfectly sized */}
+          <div className="relative mb-4 sm:mb-6 flex justify-center">
+            <div className="hero-image relative">
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-2xl shadow-lg border-2 border-white/30"
+                className="w-44 h-44 sm:w-52 sm:h-52 object-cover rounded-2xl shadow-xl border-2 border-white/30"
               />
             </div>
           </div>
 
           {/* Doctor's Name Below Photo */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4 sm:mb-6 px-2">
             <div className="mb-3">
-              <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-3 py-1 rounded-full text-xs font-medium border border-primary/20">
+              <span className="bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-primary/20">
                 NIMHANS Alumni • Neuro & Spine Surgeon
               </span>
             </div>
             
             <h1 
               ref={titleRef}
-              className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight mb-3 sm:mb-4"
             >
               Dr. Nisarg
               <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -215,12 +215,12 @@ const Hero = () => {
             </h1>
 
             {/* Mobile Animated Specialty Text */}
-            <div className="mb-6 h-12 flex items-center justify-center">
+            <div className="mb-4 sm:mb-6 h-10 sm:h-12 flex items-center justify-center">
               <div className="relative">
-                <div className="bg-gradient-to-r from-primary/15 to-accent/15 backdrop-blur-sm rounded-xl border border-primary/25 shadow-lg px-4 py-2">
+                <div className="bg-gradient-to-r from-primary/15 to-accent/15 backdrop-blur-sm rounded-xl border border-primary/25 shadow-lg px-3 sm:px-4 py-2">
                   <span 
                     ref={mobileAnimatedTextRef}
-                    className="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block text-center"
+                    className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block text-center"
                   >
                     Neurosurgeon
                   </span>
@@ -230,43 +230,43 @@ const Hero = () => {
           </div>
 
           {/* Expert Care Section Below Name - Point-wise format */}
-          <div className="mb-6 text-center">
-            <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border border-primary/20 shadow-lg backdrop-blur-sm">
-              <h3 className="text-xl font-bold text-foreground mb-4">Expert Care</h3>
-              <div className="space-y-3 text-left max-w-sm mx-auto">
-                <div className="flex items-center space-x-3">
+          <div className="mb-4 sm:mb-6 text-center px-2">
+            <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-3 sm:p-4 border border-primary/20 shadow-lg backdrop-blur-sm">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 sm:mb-4">Expert Care</h3>
+              <div className="space-y-2.5 sm:space-y-3 text-left max-w-xs sm:max-w-sm mx-auto">
+                <div className="flex items-center space-x-2.5 sm:space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-sm text-muted-foreground">15+ Years of Medical Experience</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">15+ Years of Medical Experience</p>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2.5 sm:space-x-3">
                   <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                  <p className="text-sm text-muted-foreground">500+ Successful Surgeries</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">500+ Successful Surgeries</p>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2.5 sm:space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  <p className="text-sm text-muted-foreground">NIMHANS Certified Specialist</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">NIMHANS Certified Specialist</p>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2.5 sm:space-x-3">
                   <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                  <p className="text-sm text-muted-foreground">Trusted by 3000+ Patients</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Trusted by 3000+ Patients</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Mobile Description and Buttons */}
-          <div className="text-center">
+          <div className="text-center px-2">
             <p 
               ref={subtitleRef}
-              className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed max-w-lg mx-auto px-2"
+              className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed max-w-md mx-auto"
             >
               Leading expert in neurosurgery and spine surgery with prestigious NIMHANS training. Specializing in complex brain and spine procedures.
             </p>
 
-            <div className="flex flex-col gap-3 mb-6 px-4">
+            <div className="flex flex-col gap-3 mb-4 sm:mb-6 max-w-xs sm:max-w-sm mx-auto">
               <Button 
                 size="lg" 
-                className="hero-button bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 text-base px-6 py-5 w-full"
+                className="hero-button bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 text-sm sm:text-base px-4 sm:px-6 py-4 sm:py-5 w-full"
                 onClick={handleScheduleConsultation}
               >
                 Schedule Consultation
@@ -275,23 +275,23 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="hero-button border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-base px-6 py-5 w-full"
+                className="hero-button border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-sm sm:text-base px-4 sm:px-6 py-4 sm:py-5 w-full"
                 onClick={handleViewSpecialties}
               >
                 View Specialties
               </Button>
             </div>
 
-            {/* Mobile Stats */}
-            <div ref={statsRef} className="grid grid-cols-3 gap-2 px-2">
+            {/* Mobile Stats - Optimized spacing */}
+            <div ref={statsRef} className="grid grid-cols-3 gap-1.5 sm:gap-2 px-1 max-w-md mx-auto">
               {stats.map((stat, index) => (
-                <div key={index} className="stat-item text-center p-2">
-                  <div className="flex items-center justify-center mb-2">
-                    <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                      <stat.icon className="w-4 h-4 text-white" />
+                <div key={index} className="stat-item text-center p-1.5 sm:p-2">
+                  <div className="flex items-center justify-center mb-1.5 sm:mb-2">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                      <stat.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                     </div>
                   </div>
-                  <div className="text-base font-bold text-foreground">{stat.label}</div>
+                  <div className="text-sm sm:text-base font-bold text-foreground">{stat.label}</div>
                   <div className="text-xs text-muted-foreground leading-tight">{stat.description}</div>
                 </div>
               ))}
