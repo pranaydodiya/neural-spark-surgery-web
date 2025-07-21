@@ -7,6 +7,7 @@ import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import Appointments from '@/components/Appointments';
 import Contact from '@/components/Contact';
+import Chatbot from '@/components/Chatbot';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
@@ -44,6 +45,7 @@ const Index = () => {
       <Testimonials />
       <Appointments />
       <Contact />
+      <Chatbot />
     </div>
   );
 };
