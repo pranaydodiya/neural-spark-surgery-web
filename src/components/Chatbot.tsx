@@ -290,24 +290,22 @@ const Chatbot = () => {
               <div ref={messagesEndRef} />
             </CardContent>
 
-            {/* Suggested Questions */}
-            {messages.length <= 1 && (
-              <div className="px-4 pb-2">
-                <p className="text-xs text-muted-foreground mb-2">Quick questions:</p>
-                <div className="flex flex-wrap gap-1">
-                  {suggestedQuestions.slice(0, 4).map((question, index) => (
-                    <Badge
-                      key={index}
-                      variant="outline"
-                      className="cursor-pointer hover:bg-primary hover:text-white transition-colors text-xs p-1"
-                      onClick={() => handleSuggestedQuestion(question)}
-                    >
-                      {question}
-                    </Badge>
-                  ))}
-                </div>
+            {/* Suggested Questions - Always visible */}
+            <div className="px-4 pb-2 border-t bg-gray-50 dark:bg-gray-900/50">
+              <p className="text-xs text-muted-foreground mb-2 pt-2">💡 Quick questions:</p>
+              <div className="flex flex-wrap gap-1 max-h-20 overflow-y-auto">
+                {suggestedQuestions.map((question, index) => (
+                  <Badge
+                    key={index}
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white transition-colors text-xs p-1.5 hover:scale-105 transform duration-200"
+                    onClick={() => handleSuggestedQuestion(question)}
+                  >
+                    {question}
+                  </Badge>
+                ))}
               </div>
-            )}
+            </div>
 
             {/* Input Area */}
             <div className="p-4 border-t">
