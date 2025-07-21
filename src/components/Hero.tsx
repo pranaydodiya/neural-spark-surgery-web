@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Award, Users, Clock, Stethoscope, Brain, Heart } from 'lucide-react';
@@ -375,7 +374,7 @@ const Hero = () => {
               <img 
                 src="/lovable-uploads/4cbfc350-3eac-4f2d-9890-a297c5dcae4c.png" 
                 alt="Dr. Nisarg Parmar - Neurosurgeon" 
-                className="w-72 h-72 lg:w-80 lg:h-80 xl:w-88 xl:h-88 object-cover object-center rounded-2xl shadow-xl border-3 border-white/40"
+                className="w-80 h-80 lg:w-96 lg:h-96 xl:w-[420px] xl:h-[420px] object-cover object-center rounded-2xl shadow-xl border-3 border-white/40"
               />
             </div>
 
